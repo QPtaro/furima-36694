@@ -17,16 +17,16 @@
 - has_one :buyer
 
 ## items テーブル
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| item_name        | string     | null: false                    |
-| item_description | text       | null: false                    |
-| category         | string     | null: false                    |
-| item_condition   | string     | null: false                    |
-| delivery_fee     | string     | null: false                    |
-| shipment_source  | string     | null: false                    |
-| delivery_time    | string     | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item_name          | string     | null: false                    |
+| item_description   | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| delivery_fee_id    | integer    | null: false                    |
+| shipment_source_id | integer    | null: false                    |
+| delivery_time_id   | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :user
 - has_one :buyer
@@ -44,4 +44,13 @@
 | item_id          | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :user
+- belongs_to :item
+
+## buyer_items テーブル
+| Column | Type       | Options                        |
+|------- | ---------- | ------------------------------ |
+| buyer  | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
+### Association
+- belongs_to :buyer
 - belongs_to :item
