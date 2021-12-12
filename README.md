@@ -14,7 +14,7 @@
 | birth_date         | date   | null: false               |
 ### Association
 - has_many :items
-- has_one :buyer
+- has_many :delivery_addresses
 
 ## items テーブル
 | Column             | Type       | Options                        |
@@ -24,33 +24,33 @@
 | category_id        | integer    | null: false                    |
 | condition_id       | integer    | null: false                    |
 | delivery_fee_id    | integer    | null: false                    |
-| shipment_source_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | delivery_time_id   | integer    | null: false                    |
+| item_price         | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :user
-- has_one :buyer
+- has_one :purchase
 
-## buyers テーブル
+## delivery_addresses テーブル
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| postal_code      | string     | null: false                    |
-| prefectural      | string     | null: false                    |
+| postcode_id      | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
 | city             | string     | null: false                    |
 | street           | string     | null: false                    |
 | building_name    | string     | null: false                    |
 | telephone_number | string     | null: false                    |
 | user_id          | references | null: false, foreign_key: true |
-| item_id          | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :user
-- belongs_to :item
+- has_one :purchase
 
-## buyer_items テーブル
-| Column | Type       | Options                        |
-|------- | ---------- | ------------------------------ |
-| buyer  | references | null: false, foreign_key: true |
-| item   | references | null: false, foreign_key: true |
+## purchases テーブル
+| Column           | Type       | Options                        |
+|----------------- | ---------- | ------------------------------ |
+| delivery_address | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
 ### Association
-- belongs_to :buyer
+- belongs_to :delivery_address
 - belongs_to :item
