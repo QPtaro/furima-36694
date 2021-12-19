@@ -14,7 +14,7 @@
 | birth_date         | date   | null: false               |
 ### Association
 - has_many :items
-- has_many :purchase
+- has_many :purchases
 
 ## items テーブル
 | Column             | Type       | Options                        |
@@ -30,7 +30,7 @@
 | user               | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :user
-- has_one :purchase
+- has_one :purchases
 
 ## delivery_addresses テーブル
 | Column           | Type       | Options                        |
@@ -41,9 +41,9 @@
 | street           | string     | null: false                    |
 | building_name    | string     |                                |
 | telephone_number | string     | null: false                    |
-| purchase_id      | references | null: false, foreign_key: true |
+| purchase         | references | null: false, foreign_key: true |
 ### Association
-- has_one :purchase
+- belongs_to :purchase
 
 ## purchases テーブル
 | Column           | Type       | Options                        |
@@ -51,5 +51,6 @@
 | user             | references | null: false, foreign_key: true |
 | item             | references | null: false, foreign_key: true |
 ### Association
-- belongs_to :item
 - belongs_to :user
+- belongs_to :item
+- has_one :delivery_addresses
