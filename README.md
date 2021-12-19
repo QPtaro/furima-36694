@@ -30,7 +30,7 @@
 | user               | references | null: false, foreign_key: true |
 ### Association
 - belongs_to :user
-- has_one :purchases
+- has_one :purchase
 
 ## delivery_addresses テーブル
 | Column           | Type       | Options                        |
@@ -53,4 +53,4 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :delivery_addresses
+- has_one :delivery_address
